@@ -126,7 +126,8 @@ let endpointsToQuery = [
   {apiVersion: 'dstu2', resourceType: 'Observation'},
   {apiVersion: 'dstu2', resourceType: 'MedicationDispense'},
   {apiVersion: 'dstu2', resourceType: 'Condition'},
-  {apiVersion: 'dstu2', resourceType: 'AllergyIntolerance'}
+  {apiVersion: 'dstu2', resourceType: 'AllergyIntolerance'},
+  {apiVersion: 'dstu2', resourceType: 'MedicationStatement'}
 ]
 
 function getAllFhirResourceBundles (oneupAccessToken, callback) {

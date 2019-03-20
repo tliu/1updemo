@@ -5,6 +5,7 @@ import { authenticate, logout, logoutEvent } from '../utils'
 import Header from '../components/header.js'
 import FhirPatient from '../components/fhir/patient.js'
 import FhirAllergyIntolerance from '../components/fhir/allergyintolerance.js'
+import FhirMedicationStatement from '../components/fhir/medicationstatement.js'
 import FhirCondition from '../components/fhir/condition.js'
 
 export default class Dashboard extends React.Component {
@@ -41,6 +42,8 @@ export default class Dashboard extends React.Component {
   }
   resourceComponent (resourceType, resource) {
     switch (resourceType){
+      case 'MedicationStatement':
+        return <FhirMedicationStatement {...resource} />
       case 'Patient':
         return <FhirPatient {...resource} />
       case 'Condition':
@@ -69,7 +72,8 @@ export default class Dashboard extends React.Component {
           </div>
         )}</div>
         <div>
-          {["Patient","Condition","AllergyIntolerance","Encounter","Observation","MedicationDispense","Coverage","ExplanationOfBenefit","ReferralRequest"].map(function(resourceType){
+          {["MedicationStatement", "Patient","Condition","AllergyIntolerance","Encounter","Observation","MedicationDispense","Coverage","ExplanationOfBenefit","ReferralRequest"].map(function(resourceType){
+                                                                                                                                                          console.log(this.props.dashboard.resources);
             return (<div>
               {this.props.dashboard.resources[resourceType].entry.length > 0 ? <h2>{resourceType}</h2> : ''}
               {this.props.dashboard.resources[resourceType].entry.map(function(resource){
